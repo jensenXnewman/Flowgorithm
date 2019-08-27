@@ -4,14 +4,13 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="10158431"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2019-08-27 07:54:08 AM"/>
+        <attribute name="saved" value="2019-08-26 01:56:49 PM"/>
         <attribute name="created" value="MTAxNTg0MzE7RkxTQjY3WEhSMjsyMDE5LTA4LTIxOzExOjM2OjQyIEFNOzIzNzI="/>
-        <attribute name="edited" value="MTAxNTg0MzE7RkxTQjY3WEhSMjsyMDE5LTA4LTI3OzA3OjU0OjA4IEFNOzIxOzI1NDM="/>
+        <attribute name="edited" value="MTAxNTg0MzE7RkxTQjY3WEhSMjsyMDE5LTA4LTI2OzAxOjU2OjQ5IFBNOzIxOzI1NTg="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <output expression="&quot;starting&quot;" newline="True"/>
             <declare name="parameters" type="Real" array="True" size="30"/>
             <declare name="Nf, Tf, Ps, Pd, Qfs" type="Real" array="False" size=""/>
             <assign variable="Nf" expression="1"/>
@@ -22,6 +21,14 @@
             <call expression="readConfig(parameters)"/>
             <call expression="QHperformanceCurves(Nf,Tf,Ps,Pd,Qfs,parameters)"/>
             <output expression="&quot;ran&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="parameterLookup" type="Real" variable="value">
+        <parameters>
+            <parameter name="name" type="String" array="False"/>
+        </parameters>
+        <body>
+            <declare name="value" type="Real" array="False" size=""/>
         </body>
     </function>
     <function name="QHperformanceCurves" type="Real" variable="Clp">
@@ -37,36 +44,36 @@
             <declare name="Xtf0, Xtf1, Xtf2, Xtf3, Xtf4, Chead, SGf, Ds, Dd, Cflow, g, Hgt, z, zs, zd, Nt, Qltn, Dfr, Dbr, Dtb, Dcb, Clfr, Clbr, Cltb, Clcb, Lfr, Lbr, Ltb, Lcb, kwear" type="Real" array="False" size=""/>
             <declare name="Hss, Hds, TDHf, As, Ad, Vs, Vd, Hsv, Hdv, Hf, Hfr, Hbr, Htb, Hcb, Qt, Qdelm, Qdelc, Qlfr, Qlbr, Qltb, Qlcb, Qlt, Clp" type="Real" array="False" size=""/>
             <assign variable="Clp" expression="1"/>
-            <assign variable="Xtf0" expression="parameters[0]"/>
-            <assign variable="Xtf1" expression="parameters[1]"/>
-            <assign variable="Xtf2" expression="parameters[2]"/>
-            <assign variable="Xtf3" expression="parameters[3]"/>
-            <assign variable="Xtf4" expression="parameters[4]"/>
-            <assign variable="Chead" expression="parameters[5]"/>
-            <assign variable="SGf" expression="parameters[6]"/>
-            <assign variable="Ds" expression="parameters[7]"/>
-            <assign variable="Dd" expression="parameters[8]"/>
-            <assign variable="Cflow" expression="parameters[9]"/>
-            <assign variable="g" expression="parameters[10]"/>
-            <assign variable="Hgt" expression="parameters[11]"/>
-            <assign variable="z" expression="parameters[12]"/>
-            <assign variable="zs" expression="parameters[13]"/>
-            <assign variable="zd" expression="parameters[14]"/>
-            <assign variable="Nt" expression="parameters[15]"/>
-            <assign variable="Qltn" expression="parameters[16]"/>
-            <assign variable="Dfr" expression="parameters[17]"/>
-            <assign variable="Dbr" expression="parameters[18]"/>
-            <assign variable="Dtb" expression="parameters[19]"/>
-            <assign variable="Dcb" expression="parameters[20]"/>
-            <assign variable="Clfr" expression="parameters[21]"/>
-            <assign variable="Clbr" expression="parameters[22]"/>
-            <assign variable="Cltb" expression="parameters[23]"/>
-            <assign variable="Clcb" expression="parameters[24]"/>
-            <assign variable="Lfr" expression="parameters[25]"/>
-            <assign variable="Lbr" expression="parameters[26]"/>
-            <assign variable="Ltb" expression="parameters[27]"/>
-            <assign variable="Lcb" expression="parameters[28]"/>
-            <assign variable="kwear" expression="parameters[29]"/>
+            <assign variable="Xtf0" expression="parameterLookup(&quot;Xtf0&quot;)"/>
+            <assign variable="Xtf1" expression="parameterLookup(&quot;Xtf1&quot;)"/>
+            <assign variable="Xtf2" expression="parameterLookup(&quot;Xtf2&quot;)"/>
+            <assign variable="Xtf3" expression="parameterLookup(&quot;Xtf3&quot;)"/>
+            <assign variable="Xtf4" expression="parameterLookup(&quot;Xtf4&quot;)"/>
+            <assign variable="Chead" expression="parameterLookup(&quot;Chead&quot;)"/>
+            <assign variable="SGf" expression="parameterLookup(&quot;SGf&quot;)"/>
+            <assign variable="Ds" expression="parameterLookup(&quot;Ds&quot;)"/>
+            <assign variable="Dd" expression="parameterLookup(&quot;Dd&quot;)"/>
+            <assign variable="Cflow" expression="parameterLookup(&quot;Cflow&quot;)"/>
+            <assign variable="g" expression="parameterLookup(&quot;g&quot;)"/>
+            <assign variable="Hgt" expression="parameterLookup(&quot;Hgt&quot;)"/>
+            <assign variable="z" expression="parameterLookup(&quot;z&quot;)"/>
+            <assign variable="zs" expression="parameterLookup(&quot;zs&quot;)"/>
+            <assign variable="zd" expression="parameterLookup(&quot;zd&quot;)"/>
+            <assign variable="Nt" expression="parameterLookup(&quot;Nt&quot;)"/>
+            <assign variable="Qltn" expression="parameterLookup(&quot;Qltn&quot;)"/>
+            <assign variable="Dfr" expression="parameterLookup(&quot;Dfr&quot;)"/>
+            <assign variable="Dbr" expression="parameterLookup(&quot;Dbr&quot;)"/>
+            <assign variable="Dtb" expression="parameterLookup(&quot;Dtb&quot;)"/>
+            <assign variable="Dcb" expression="parameterLookup(&quot;Dcb&quot;)"/>
+            <assign variable="Clfr" expression="parameterLookup(&quot;Clfr&quot;)"/>
+            <assign variable="Clbr" expression="parameterLookup(&quot;Clbr&quot;)"/>
+            <assign variable="Cltb" expression="parameterLookup(&quot;Cltb&quot;)"/>
+            <assign variable="Clcb" expression="parameterLookup(&quot;Clcb&quot;)"/>
+            <assign variable="Lfr" expression="parameterLookup(&quot;Lfr&quot;)"/>
+            <assign variable="Lbr" expression="parameterLookup(&quot;Lbr&quot;)"/>
+            <assign variable="Ltb" expression="parameterLookup(&quot;Ltb&quot;)"/>
+            <assign variable="Lcb" expression="parameterLookup(&quot;Lcb&quot;)"/>
+            <assign variable="kwear" expression="parameterLookup(&quot;kwear&quot;)"/>
             <assign variable="Hss" expression="Ps*Chead/SGf"/>
             <assign variable="Hds" expression="Pd*Chead/SGf"/>
             <assign variable="As" expression="3.14*4*Ds^2"/>
