@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="10158431"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2019-08-26 12:09:59 PM"/>
+        <attribute name="created" value="MTAxNTg0MzE7RkxTQjY3WEhSMjsyMDE5LTA4LTIxOzExOjM2OjQyIEFNOzIzNzI="/>
+        <attribute name="edited" value="MTAxNTg0MzE7RkxTQjY3WEhSMjsyMDE5LTA4LTI2OzEyOjA5OjU5IFBNOzE4OzI1NjU="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="parameters" type="Real" array="True" size="30"/>
+            <declare name="Nf, Tf, Ps, Pd, Qfs" type="Real" array="False" size=""/>
+            <assign variable="Nf" expression="1"/>
+            <assign variable="Tf" expression="1"/>
+            <assign variable="Ps" expression="1"/>
+            <assign variable="Pd" expression="1"/>
+            <assign variable="Qfs" expression="1"/>
+            <call expression="readConfig(parameters)"/>
+            <call expression="QHperformanceCurves(Nf,Tf,Ps,Pd,Qfs,parameters)"/>
+            <output expression="&quot;ran&quot;" newline="True"/>
+        </body>
+    </function>
+    <function name="QHperformanceCurves" type="Real" variable="Clp">
+        <parameters>
+            <parameter name="Nf" type="Real" array="False"/>
+            <parameter name="Tf" type="Real" array="False"/>
+            <parameter name="Ps" type="Real" array="False"/>
+            <parameter name="Pd" type="Real" array="False"/>
+            <parameter name="Qfs" type="Real" array="False"/>
+            <parameter name="parameters" type="Real" array="True"/>
+        </parameters>
+        <body>
+            <declare name="Xtf0, Xtf1, Xtf2, Xtf3, Xtf4, Chead, SGf, Ds, Dd, Cflow, g, Hgt, z, zs, zd, Nt, Qltn, Dfr, Dbr, Dtb, Dcb, Clfr, Clbr, Cltb, Clcb, Lfr, Lbr, Ltb, Lcb, kwear" type="Real" array="False" size=""/>
+            <declare name="Hss, Hds, TDHf, As, Ad, Vs, Vd, Hsv, Hdv, Hf, Hfr, Hbr, Htb, Hcb, Qt, Qdelm, Qdelc, Qlfr, Qlbr, Qltb, Qlcb, Qlt, Clp" type="Real" array="False" size=""/>
+            <assign variable="Clp" expression="1"/>
+            <assign variable="Xtf0" expression="parameters[0]"/>
+            <assign variable="Xtf1" expression="parameters[1]"/>
+            <assign variable="Xtf2" expression="parameters[2]"/>
+            <assign variable="Xtf3" expression="parameters[3]"/>
+            <assign variable="Xtf4" expression="parameters[4]"/>
+            <assign variable="Chead" expression="parameters[5]"/>
+            <assign variable="SGf" expression="parameters[6]"/>
+            <assign variable="Ds" expression="parameters[7]"/>
+            <assign variable="Dd" expression="parameters[8]"/>
+            <assign variable="Cflow" expression="parameters[9]"/>
+            <assign variable="g" expression="parameters[10]"/>
+            <assign variable="Hgt" expression="parameters[11]"/>
+            <assign variable="z" expression="parameters[12]"/>
+            <assign variable="zs" expression="parameters[13]"/>
+            <assign variable="zd" expression="parameters[14]"/>
+            <assign variable="Nt" expression="parameters[15]"/>
+            <assign variable="Qltn" expression="parameters[16]"/>
+            <assign variable="Dfr" expression="parameters[17]"/>
+            <assign variable="Dbr" expression="parameters[18]"/>
+            <assign variable="Dtb" expression="parameters[19]"/>
+            <assign variable="Dcb" expression="parameters[20]"/>
+            <assign variable="Clfr" expression="parameters[21]"/>
+            <assign variable="Clbr" expression="parameters[22]"/>
+            <assign variable="Cltb" expression="parameters[23]"/>
+            <assign variable="Clcb" expression="parameters[24]"/>
+            <assign variable="Lfr" expression="parameters[25]"/>
+            <assign variable="Lbr" expression="parameters[26]"/>
+            <assign variable="Ltb" expression="parameters[27]"/>
+            <assign variable="Lcb" expression="parameters[28]"/>
+            <assign variable="kwear" expression="parameters[29]"/>
+            <assign variable="Hss" expression="Ps*Chead/SGf"/>
+            <assign variable="Hds" expression="Pd*Chead/SGf"/>
+            <assign variable="As" expression="3.14*4*Ds^2"/>
+            <assign variable="Ad" expression="3.14/4*Dd^2"/>
+            <assign variable="Vs" expression="Qfs*Cflow/As"/>
+            <assign variable="Vd" expression="Qfs*Cflow/Ad"/>
+            <assign variable="Hsv" expression="Vs^2/(2*g)"/>
+            <assign variable="Hdv" expression="Vd^2/(2*g)"/>
+            <assign variable="TDHf" expression="Hds - Hss + Hdv - Hsv + Hgt"/>
+            <assign variable="Qt" expression="Xtf4*TDHf^4 + Xtf3*TDHf^3 + Xtf2*TDHf^2 + Xtf1*TDHf^1 + Xtf0"/>
+            <assign variable="Qdelm" expression="Qt - Qfs"/>
+            <assign variable="Hf" expression="TDHf * ( Nt / Nf ) ^ 2"/>
+            <assign variable="Hfr" expression="Hf / z * 0.75"/>
+            <assign variable="Hbr" expression="Hf / z * 0.25"/>
+            <assign variable="Htb" expression="Hf / z * zs"/>
+            <assign variable="Hcb" expression="Hf / z * zd"/>
+            <assign variable="Qlfr" expression="kwear * sqrt( ( 0.44 * Hfr * Dfr ^ 2 * ( 1000 * Clfr ) ^ 3 ) * ( 1000 * ( 12 * Lfr + 375 * Clfr ) ) )"/>
+            <assign variable="Qlbr" expression="kwear * sqrt( ( 0.44 * Hbr * Dbr ^ 2 * ( 1000 * Clbr ) ^ 3 ) * ( 1000 * ( 12 * Lbr + 375 * Clbr ) ) )"/>
+            <assign variable="Qltb" expression="kwear * sqrt( ( 0.44 * Htb * Dtb ^ 2 * ( 1000 * Cltb ) ^ 3 ) * ( 1000 * ( 12 * Ltb + 375 * Cltb ) ) )"/>
+            <assign variable="Qlcb" expression="kwear * sqrt( ( 0.44 * Hcb * Dcb ^ 2 * ( 1000 * Clcb ) ^ 3 ) * ( 1000 * ( 12 * Lcb + 375 * Clcb ) ) )"/>
+            <assign variable="Qlt" expression="Qlfr + Qlbr + ( Qltb + Qlcb ) / 2"/>
+            <assign variable="Qdelc" expression="Qlt - Qltn"/>
+            <while expression="Qdelc &lt;= Qdelm">
+                <assign variable="Clp" expression="Clp + 0.001"/>
+                <assign variable="Clfr" expression="Clfr * Clp"/>
+                <assign variable="Clbr" expression="Clbr * Clp"/>
+                <assign variable="Cltb" expression="Cltb * Clp"/>
+                <assign variable="Clcb" expression="Clcb * Clp"/>
+                <assign variable="Qlfr" expression="kwear * sqrt( ( 0.44 * Hfr * Dfr ^ 2 * ( 1000 * Clfr ) ^ 3 ) * ( 1000 * ( 12 * Lfr + 375 * Clfr ) ) )"/>
+                <assign variable="Qlbr" expression="kwear * sqrt( ( 0.44 * Hbr * Dbr ^ 2 * ( 1000 * Clbr ) ^ 3 ) * ( 1000 * ( 12 * Lbr + 375 * Clbr ) ) )"/>
+                <assign variable="Qltb" expression="kwear * sqrt( ( 0.44 * Htb * Dtb ^ 2 * ( 1000 * Cltb ) ^ 3 ) * ( 1000 * ( 12 * Ltb + 375 * Cltb ) ) )"/>
+                <assign variable="Qlcb" expression="kwear * sqrt( ( 0.44 * Hcb * Dcb ^ 2 * ( 1000 * Clcb ) ^ 3 ) * ( 1000 * ( 12 * Lcb + 375 * Clcb ) ) )"/>
+                <assign variable="Qlt" expression="Qlfr + Qlbr + ( Qltb + Qlcb ) / 2"/>
+                <assign variable="Qdelc" expression="Qlt - Qltn"/>
+            </while>
+        </body>
+    </function>
+    <function name="readConfig" type="None" variable="">
+        <parameters>
+            <parameter name="parameters" type="Real" array="True"/>
+        </parameters>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <for variable="i" start="0" end="29" direction="inc" step="1">
+                <assign variable="parameters[i]" expression="1"/>
+            </for>
+        </body>
+    </function>
+</flowgorithm>
